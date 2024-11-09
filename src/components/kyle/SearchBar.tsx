@@ -8,7 +8,8 @@ import {
     useColorScheme,
     View,
     TextInput,
-    Image
+    Image,
+    Pressable
   } from 'react-native';
   
 
@@ -22,13 +23,19 @@ import {
     let inputText = props.inputText;
     let setInputText = props.setInputText;
 
+    function SearchIconPress () {
+      console.log(inputText)
+    }
+
     return (
       
       <View style={styles.inputArea}>
+        <Pressable onPress={SearchIconPress}>
         <Image
-        source={require('../../assets/icons/search.png')} // Adjust the path based on your folder structure
+        source={require('../../../assets/icons/search.png')} // Adjust the path based on your folder structure
         style={styles.iconStyle} // Apply styles to the image
       />
+      </Pressable>
       <TextInput
       style={styles.inputField}
       placeholder="Search for songs, artists, or albums..."

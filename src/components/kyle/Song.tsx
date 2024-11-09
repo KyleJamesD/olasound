@@ -50,7 +50,7 @@ type details  = {
                 </View>
             </Pressable>
             <Pressable onPress={iconPress}>
-                <Image source={require('../../assets/icons/dots.png')} // Adjust the path based on your folder structure
+                <Image source={require('../../../assets/icons/dots.png')} // Adjust the path based on your folder structure
                 style={styles.iconstyle} // Apply styles to the image
                 >
                 </Image>
