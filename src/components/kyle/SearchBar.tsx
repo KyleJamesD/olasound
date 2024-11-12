@@ -16,21 +16,23 @@ import {
   type InputBoxProps = {
     inputText: string;
     setInputText: (text: string) => void;
-};
+    SearchIconPress: (text: string) => void;
+    placeHolderText?: string; 
+ };
 
   function SearchBar(props : InputBoxProps) : React.JSX.Element {
 
     let inputText = props.inputText;
     let setInputText = props.setInputText;
+    let SearchIconPress = props.SearchIconPress;
+    let placeHolderText = props.placeHolderText || 'Search for songs, artists, or albums...';
 
-    function SearchIconPress () {
-      console.log(inputText)
-    }
+
 
     return (
       
       <View style={styles.inputArea}>
-        <Pressable onPress={SearchIconPress}>
+        <Pressable onPress={()=>SearchIconPress(inputText)}>
         <Image
         source={require('../../../assets/icons/search.png')} // Adjust the path based on your folder structure
         style={styles.iconStyle} // Apply styles to the image
@@ -38,7 +40,7 @@ import {
       </Pressable>
       <TextInput
       style={styles.inputField}
-      placeholder="Search for songs, artists, or albums..."
+      placeholder={placeHolderText}
       value={inputText}
       onChangeText={setInputText}
       />

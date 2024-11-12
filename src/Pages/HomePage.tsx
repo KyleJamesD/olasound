@@ -20,15 +20,34 @@ import { useState } from "react";
   import Song from "../components/kyle/Song";
 
 
-  function HomePage() : React.JSX.Element {
+
+  //*********************************Context Provider************************************************/
+
+
+  function HomePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
     const [inputText, setInputText] = useState('');
+    console.log(inputText)
+
+
+
+    // Navigate to the Search Page with the Searched Item
+    const SearchIconPress = () => {
+      console.log('Home page inputtext:'+ inputText);
+      // Navigate to 'SearchNav' stack navigator, specifically targeting 'SearchPage'
+      navigation.navigate('SearchNav', {
+        screen: 'SearchPage', // Specify the exact screen within SearchNav
+        params: { inputText }, // Pass inputText as a parameter
+      });
+    };
+
+    
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
-            <MainPageBanner></MainPageBanner>
+            <MainPageBanner title="Ola Sound" msg="Your Personal Music Journey" ></MainPageBanner>
           <View style={styles.SearchBar}>
-            <SearchBar  inputText={inputText} setInputText={setInputText}></SearchBar>
+            <SearchBar SearchIconPress={SearchIconPress}  inputText={inputText} setInputText={setInputText}></SearchBar>
           </View>
           <ScrollView>
                 <Text style={styles.topMixesTitle}>Your Top Mixes</Text>

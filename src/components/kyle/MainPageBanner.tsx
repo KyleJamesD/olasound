@@ -15,15 +15,15 @@ import {
   import LinearGradient from "react-native-linear-gradient";
 
 
-  function MainPageBanner() : React.JSX.Element {
+  function MainPageBanner({ title , msg }: { title: string, msg?: string }) : React.JSX.Element {
     return (
       <View style={styles.container}>
         <LinearGradient
           colors={['#3a6d8c', '#ead8b1']} // Gradient colors from top to bottom
           style={styles.LinearGradient}>
           <View style={styles.textContainer}>
-          <Text style={styles.lineargradientText}>Ola Sound</Text>
-          <Text style={styles.lineargradientTextSmall}>Your Personal Music Journey</Text>
+          <Text style={styles.lineargradientText}>{title}</Text>
+          <Text style={styles.lineargradientTextSmall}>{msg}</Text>
           </View>
         </LinearGradient>
       </View>
