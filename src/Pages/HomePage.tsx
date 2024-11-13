@@ -21,11 +21,14 @@ import { useState } from "react";
 
 
 
-  //*********************************Context Provider************************************************/
+ 
 
 
   function HomePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
+
+
     const [inputText, setInputText] = useState("");
+
     console.log(inputText)
 
 
@@ -40,6 +43,9 @@ import { useState } from "react";
       });
     };
 
+
+
+ 
     
 
     return (
@@ -60,7 +66,7 @@ import { useState } from "react";
               <Text style={styles.recommendedTitle}>Recommended for You</Text>
 
               <View style={styles.songlist}>
-              <Song song="Starlight Serenade" artist="Luna Nova" albumn="Cosmic Pop"  albumnCover="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?w=500&h=500"></Song>
+              <Song songid= {1234} preview="nopreview" song="Starlight Serenade" artist="Luna Nova" albumn="Cosmic Pop"  albumnCover="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?w=500&h=500"></Song>
               </View>
               {/** */}
 

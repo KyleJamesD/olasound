@@ -17,7 +17,7 @@ import {
 
 
 
-function LoginPage() : React.JSX.Element {
+function LoginPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
 

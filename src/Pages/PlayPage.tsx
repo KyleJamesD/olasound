@@ -15,10 +15,11 @@ import {
 
 
 
-function PlayPage() : React.JSX.Element {
+function PlayPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
-
+    const  {songid, song, artist, albumn, albumnCover, preview, } = route.params;
+    console.log(route.params)
 
     return (
         <View>

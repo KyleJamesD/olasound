@@ -16,7 +16,7 @@ import {
 
 
 
-function ProfilePage() : React.JSX.Element {
+function ProfilePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
 

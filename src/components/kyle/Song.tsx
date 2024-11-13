@@ -16,24 +16,46 @@ import {
   } from 'react-native';
 import { useState } from "react";
 
+import { useNavigation } from '@react-navigation/native';
+
 
 type songdetails  = {
+    songid : number,
     song : string;
     artist : string;
     albumn : string;
     albumnCover : string;
+    preview : string,
+    navigateToPlayPage? : ( 
+        songid : number,
+        song : string,
+        artist : string,
+        albumn : string,
+        albumnCover : string,
+        preview : string) => void;
+
 }
 
   function Song (props : songdetails) : React.JSX.Element {
 
-  const  {song, artist, albumn, albumnCover } = props;
+  const  {songid, song, artist, albumn, albumnCover, preview, navigateToPlayPage} = props;
+
+  // Get navigation object using useNavigation
+  const navigation = useNavigation();
 
 
   function iconPress () {
     console.log ('Pressed the three dot  Song Icon')
   }
+
+
   function songCardPress () {
-    console.log ('Pressed the Song Icon')
+    // Ensure navigateToPlayPage exists before calling it
+    if (navigateToPlayPage) {
+        navigateToPlayPage(songid, song, artist, albumn, albumnCover, preview);
+      } else {
+        console.log('navigateToPlayPage function not provided');
+      }
   }
 
     return (

@@ -16,7 +16,7 @@ import {
 
 
 
-function LibraryPage () : React.JSX.Element {
+function LibraryPage ({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
 

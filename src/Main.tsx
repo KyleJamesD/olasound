@@ -24,6 +24,7 @@ import HomeNav from "./navigation/HomeStackNav";
 import LibraryNav from "./navigation/LibraryStackNav";
 import ProfileNav from "./navigation/ProfileStackNav";
 import SearchNav from "./navigation/SearchStackNav";
+import PlayPage from "./Pages/PlayPage";
 
 type AppNavType = {
     HomeNav : undefined,

@@ -26,6 +26,7 @@ import {
 
 function SearchPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
+
     let {inputText} = route.params || "";
     const [inputTextNew, setInputTextNew] = useState("");
     const [data, setData] = useState<any>([]);
@@ -42,7 +43,16 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
         if ( inputText != null) {getData(inputText)}
         
       }, [route.params]); 
+
+
+      //*********************************Prop drilling Navigation************************************************/
     
+      function navigateToPlayPage (songid:number, song:string, artist:string, albumn:string, albumnCover:string, preview:string) {
+        navigation.navigate('HomeNav', {
+          screen: 'PlayPage', // Specify the exact screen within SearchNav
+          params: { songid, song, artist, albumn, albumnCover, preview }, // Pass inputText as a parameter
+        });
+      }
 
 
 
@@ -64,12 +74,17 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
       }
     }
 
+
     type songdetails  = {
+      songid : string,
       song : string;
       artist : string;
       albumn : string;
       albumnCover : string;
+      preview : string,
+      route : any;
   }
+  
 
 
 
@@ -92,11 +107,13 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
                        * or a string URL dynamically, local paths must be wrapped in require which returns a number for some dumb reason.
                         */}
                           <Song
+                            songid={item.id || 1234}
                             song={item.title || 'Unknown Title'}
                             artist={item.artist?.name || 'Unknown Artist'}
                             albumn={item.album?.title || 'Unknown Album'}
-                            
+                            preview={item.preview || 'No Preview'}
                             albumnCover={item.album?.cover_medium || 3213213}
+                            navigateToPlayPage={navigateToPlayPage}
                           />
                       </View>
                     ))}
