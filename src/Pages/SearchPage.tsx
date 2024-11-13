@@ -19,14 +19,16 @@ import {
 
     import MainPageBanner from "../components/kyle/MainPageBanner";
     import SearchBar from "../components/kyle/SearchBar";
+    import Song from "../components/kyle/Song";
 
 
 
 
 function SearchPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
-    const {inputText} = route.params;
-    const [inputTextNew, setInputTextNew] = useState(inputText);
+    let {inputText} = route.params || "";
+    const [inputTextNew, setInputTextNew] = useState("");
+    const [data, setData] = useState<any>([]);
     console.log(inputTextNew)
     
 
@@ -37,14 +39,38 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
     useEffect(() => {
         console.log('SearchPage:' + inputText);
         setInputTextNew(inputText);
+        if ( inputText != null) {getData(inputText)}
+        
       }, [route.params]); 
     
+
 
 
       //Call the API and display the results in a mapped list on button press.
     function SearchIconPress () {
         console.log (inputTextNew);
+        getData(inputTextNew)
     }
+
+//********************************************API FUNCTIONS**************************************************** */
+    async function getData(item: string) {
+      try {
+        const response = await fetch(`https://api.deezer.com/search?q=${item}`);
+        const responseData = await response.json();
+        setData(responseData.data || []);
+        console.log("Fetched data:", responseData.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    type songdetails  = {
+      song : string;
+      artist : string;
+      albumn : string;
+      albumnCover : string;
+  }
+
 
 
     return (
@@ -53,6 +79,30 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
             <MainPageBanner title="Search"></MainPageBanner>
             <View style={styles.SearchBar}>
             <SearchBar SearchIconPress={SearchIconPress} placeHolderText={inputTextNew} inputText={inputTextNew} setInputText={setInputTextNew}></SearchBar>
+            </View>
+            <View>
+              
+                {data.length === 0 ? (<View></View>) : 
+                (
+                  <ScrollView>
+                    {data.map((item : any) => (
+                      <View key={item.id}>
+                      {/* Check for null or undefined values before accessing properties */}
+                      {/**the way we are handling albumn cover is extremely wrong, essentially if we dont pass it a string it will default to a local image, because source cannot seem to handle both a string local path
+                       * or a string URL dynamically, local paths must be wrapped in require which returns a number for some dumb reason.
+                        */}
+                          <Song
+                            song={item.title || 'Unknown Title'}
+                            artist={item.artist?.name || 'Unknown Artist'}
+                            albumn={item.album?.title || 'Unknown Album'}
+                            
+                            albumnCover={item.album?.cover_medium || 3213213}
+                          />
+                      </View>
+                    ))}
+                  </ScrollView>
+                ) }
+              
             </View>
         </View>
         </TouchableWithoutFeedback>
@@ -65,10 +115,12 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
 const styles = StyleSheet.create({
     container: {
       flex: 1, // Takes up full height of the screen
+      paddingBottom: 200,
     },
     SearchBar: {
         alignItems:'center',
         marginTop:'8%',
+        marginBottom:'8%',
   
       },
 })

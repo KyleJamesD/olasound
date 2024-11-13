@@ -17,14 +17,14 @@ import {
 import { useState } from "react";
 
 
-type details  = {
+type songdetails  = {
     song : string;
     artist : string;
     albumn : string;
     albumnCover : string;
 }
 
-  function Song (props : details) : React.JSX.Element {
+  function Song (props : songdetails) : React.JSX.Element {
 
   const  {song, artist, albumn, albumnCover } = props;
 
@@ -39,7 +39,7 @@ type details  = {
     return (
         <View  style={styles.container}>
             <Pressable onPress={songCardPress} style={styles.pressable}>
-                <Image style={styles.image} source={{ uri: albumnCover }}></Image>
+                <Image style={styles.image} source={typeof albumnCover === 'string' ? { uri: albumnCover } : require('../../../assets/icons/noimgfound.jpg')}></Image>
                 <View style={styles.songartistalbumncontainer}>
                     <Text style={styles.song}>{song}</Text>
                     <View style={styles.artistalbumn}>

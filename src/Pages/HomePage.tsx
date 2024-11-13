@@ -25,7 +25,7 @@ import { useState } from "react";
 
 
   function HomePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
-    const [inputText, setInputText] = useState('');
+    const [inputText, setInputText] = useState("");
     console.log(inputText)
 
 
@@ -62,6 +62,7 @@ import { useState } from "react";
               <View style={styles.songlist}>
               <Song song="Starlight Serenade" artist="Luna Nova" albumn="Cosmic Pop"  albumnCover="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?w=500&h=500"></Song>
               </View>
+              {/** */}
 
           </ScrollView>
         </View>
