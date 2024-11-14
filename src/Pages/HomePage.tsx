@@ -12,16 +12,18 @@ import {
     Alert,
     TouchableOpacity,
   } from 'react-native';
+import { useEffect } from "react";
+  import TrackPlayer from "react-native-track-player";
 import { useState } from "react";
   import MainPageBanner from "../components/kyle/MainPageBanner";
   import SearchBar from "../components/kyle/SearchBar";
   import { Keyboard, TouchableWithoutFeedback } from "react-native";
   import TopMixesButton from "../components/kyle/TopMixesButton";
   import Song from "../components/kyle/Song";
+  import { RepeatMode } from 'react-native-track-player';
 
 
 
- 
 
 
   function HomePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
@@ -44,7 +46,25 @@ import { useState } from "react";
     };
 
 
+/***********************Set up react native Track Player********************** */
 
+    useEffect(() => {
+      const setupPlayer = async () => {
+        try {
+          // Initialize TrackPlayer
+          await TrackPlayer.setupPlayer();  // This is the correct method to initialize the player
+          console.log('Player setup complete!');
+          TrackPlayer.setRepeatMode(RepeatMode.Track); // Sets the Player to keep repeating the track and prevents it from popping it off the queue
+  
+          // Now the player is ready to be used
+          // You can add tracks or interact with other TrackPlayer methods here
+        } catch (error) {
+          console.log('Error setting up player:', error);
+        }
+      };
+  
+      setupPlayer(); // Call the function that sets up the player
+    }, []); // Only run on initial render (empty dependency array) except this doesnt work because Im not good enough to fully understand React Navigation, which keeps mounting and unmounting pages......
  
     
 
@@ -78,7 +98,7 @@ import { useState } from "react";
   
   const styles = StyleSheet.create({
     container: {
-      flex: 1, // Takes up full height of the screen
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
     },
     SearchBar: {
       alignItems:'center',

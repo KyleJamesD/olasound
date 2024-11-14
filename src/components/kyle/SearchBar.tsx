@@ -43,6 +43,8 @@ import {
       placeholder={placeHolderText}
       value={inputText}
       onChangeText={setInputText}
+      onSubmitEditing={SearchIconPress} // Trigger search on Enter, this causes a typescript error due to onSubmitEditing expecting the function passed to be an event, but it works 
+      returnKeyType="search" // Set keyboard Enter key to show "Search"
       />
       </View>
 

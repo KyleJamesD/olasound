@@ -30,5 +30,14 @@ function LibraryPage ({ navigation, route }: {navigation: any, route: any }) : R
 
 }
 
+const styles = StyleSheet.create({
+    container: {
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
+      borderWidth: 2,
+      borderColor: 'red',
+      
+    },
+
+})
 
 export default LibraryPage;

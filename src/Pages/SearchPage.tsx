@@ -91,7 +91,8 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
-            <MainPageBanner title="Search"></MainPageBanner>
+            <MainPageBanner title="Search" ></MainPageBanner>
+
             <View style={styles.SearchBar}>
             <SearchBar SearchIconPress={SearchIconPress} placeHolderText={inputTextNew} inputText={inputTextNew} setInputText={setInputTextNew}></SearchBar>
             </View>
@@ -131,8 +132,10 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
   
 const styles = StyleSheet.create({
     container: {
-      flex: 1, // Takes up full height of the screen
-      paddingBottom: 200,
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
+      borderWidth: 2,
+      borderColor: 'red',
+      
     },
     SearchBar: {
         alignItems:'center',

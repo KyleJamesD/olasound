@@ -16,11 +16,13 @@ import {
       Pressable,
     } from 'react-native';
 
+    import { useRef } from "react";
     import { useEffect } from "react";
 
     import MainPageBanner from "../components/kyle/MainPageBanner";
 
     import TrackPlayer , { useProgress } from 'react-native-track-player';
+import { setupPlayer } from "react-native-track-player/lib/src/trackPlayer";
 
 
 
@@ -37,22 +39,23 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
     
 
 
+
+
       useEffect(() => {
-        
         // Call the setup function
         console.log('setup has run and the new song should load')
-        setup();
+        setup2();
       }, [route.params]);
 
       
 
-      const setup = async () => {
+      const setup2 = async () => {
       await TrackPlayer.reset();
         await TrackPlayer.add({
           url:(preview),
           //artwork: require(albumnCover)
         });
-      
+
       };
 
       
@@ -64,11 +67,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
 
 
     function pausebutton () {
-    
-            TrackPlayer.pause();
-            
-
-        
+            TrackPlayer.pause(); 
     }
     
 
@@ -93,8 +92,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1, // Takes up full height of the screen
-      paddingBottom: 200,
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
     },
     image: {
         width: 200,  // Set the width of the image
