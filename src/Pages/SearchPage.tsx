@@ -62,31 +62,20 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
         getData(inputTextNew)
     }
 
-//********************************************API FUNCTIONS**************************************************** */
-    async function getData(item: string) {
-      try {
-        const response = await fetch(`https://api.deezer.com/search?q=${item}`);
-        const responseData = await response.json();
-        setData(responseData.data || []);
-        console.log("Fetched data:", responseData.data);
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    }
+    //********************************************API FUNCTIONS**************************************************** */
+        async function getData(item: string) {
+          try {
+            const response = await fetch(`https://api.deezer.com/search?q=${item}`);
+            const responseData = await response.json();
+            setData(responseData.data || []);
+            console.log("Fetched data:", responseData.data);
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        }
 
 
-    type songdetails  = {
-      songid : string,
-      song : string;
-      artist : string;
-      albumn : string;
-      albumnCover : string;
-      preview : string,
-      route : any;
-  }
   
-
-
 
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -133,9 +122,6 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
 const styles = StyleSheet.create({
     container: {
       height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
-      borderWidth: 2,
-      borderColor: 'red',
-      
     },
     SearchBar: {
         alignItems:'center',
