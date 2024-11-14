@@ -64,7 +64,7 @@ import { useState } from "react";
       };
   
       setupPlayer(); // Call the function that sets up the player
-    }, []); // Only run on initial render (empty dependency array) except this doesnt work because Im not good enough to fully understand React Navigation, which keeps mounting and unmounting pages......
+    }, []); // Only run on initial render (empty dependency array) except this doesnt work because Im not good enough to fully understand React Navigation, which keeps mounting and unmounting pages......this seems to only happen to use effects  on the PLayPage
  
     
 

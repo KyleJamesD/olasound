@@ -18,6 +18,7 @@ import {
 
     import { useRef } from "react";
     import { useEffect } from "react";
+    import { useState } from "react";
 
     import MainPageBanner from "../components/kyle/MainPageBanner";
 
@@ -38,7 +39,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
 //console.log(progress.buffered);
     
 
-
+    const [playpause, setPlayPause] = useState(false);
 
 
       useEffect(() => {
@@ -61,8 +62,16 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
       
 
 
-    function playbutton () {
-            TrackPlayer.play();
+    function playPauseButton () {
+      if(!playpause){
+        TrackPlayer.play();
+        setPlayPause(true);
+      }
+      else{
+        TrackPlayer.pause();
+        setPlayPause(false);
+      }
+            
     }
 
 
@@ -81,8 +90,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
             <Text style={styles.artistTitle}>{artist}</Text>
             <Image style={styles.image} source={typeof albumnCover === 'string' ? { uri: albumnCover } : require('../../assets/icons/noimgfound.jpg')}></Image>
             
-            <Pressable onPress={playbutton}><Image  style={styles.playbutton} source={require('../../assets/icons/play.png')}></Image></Pressable>
-            <Pressable onPress={pausebutton}><Image  style={styles.playbutton} source={require('../../assets/icons/play.png')}></Image></Pressable>
+            <Pressable onPress={playPauseButton}><Image  style={styles.playbutton} source={playpause === false ? require('../../assets/icons/play.png') : require('../../assets/icons/pause.png')}></Image></Pressable>
             </View>
         </View>
 
