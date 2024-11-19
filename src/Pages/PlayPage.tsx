@@ -38,7 +38,6 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
 
     const [playpause, setPlayPause] = useState(false);
 
-
       useEffect(() => {
         // Call the setup function
         console.log('setup has run and the new song should load')

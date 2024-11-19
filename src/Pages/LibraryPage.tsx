@@ -22,7 +22,7 @@ function LibraryPage ({ navigation, route }: {navigation: any, route: any }) : R
 
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text>Library Page</Text>
         </View>
 
@@ -33,10 +33,8 @@ function LibraryPage ({ navigation, route }: {navigation: any, route: any }) : R
 const styles = StyleSheet.create({
     container: {
       height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
-      borderWidth: 2,
-      borderColor: 'red',
       
-    },
+    }
 
 })
 
