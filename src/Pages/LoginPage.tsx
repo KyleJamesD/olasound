@@ -17,13 +17,7 @@ import {
 
 
 
-
-
-
-
-
-
-function LoginPage() : React.JSX.Element {
+function LoginPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
 
@@ -37,5 +31,13 @@ function LoginPage() : React.JSX.Element {
 
 }
 
+const styles = StyleSheet.create({
+    container: {
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
+      borderWidth: 2,
+      borderColor: 'red',
+      
+    },
 
+})
 export default LoginPage;

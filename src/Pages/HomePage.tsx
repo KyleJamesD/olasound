@@ -12,23 +12,68 @@ import {
     Alert,
     TouchableOpacity,
   } from 'react-native';
+import { useEffect } from "react";
+  import TrackPlayer from "react-native-track-player";
 import { useState } from "react";
   import MainPageBanner from "../components/kyle/MainPageBanner";
   import SearchBar from "../components/kyle/SearchBar";
   import { Keyboard, TouchableWithoutFeedback } from "react-native";
   import TopMixesButton from "../components/kyle/TopMixesButton";
   import Song from "../components/kyle/Song";
+  import { RepeatMode } from 'react-native-track-player';
 
 
-  function HomePage() : React.JSX.Element {
-    const [inputText, setInputText] = useState('');
+
+
+
+  function HomePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
+
+
+    const [inputText, setInputText] = useState("");
+
+    console.log(inputText)
+
+
+
+    // Navigate to the Search Page with the Searched Item
+    const SearchIconPress = () => {
+      console.log('Home page inputtext:'+ inputText);
+      // Navigate to 'SearchNav' stack navigator, specifically targeting 'SearchPage'
+      navigation.navigate('SearchNav', {
+        screen: 'SearchPage', // Specify the exact screen within SearchNav
+        params: { inputText }, // Pass inputText as a parameter
+      });
+    };
+
+
+/***********************Set up react native Track Player********************** */
+
+    useEffect(() => {
+      const setupPlayer = async () => {
+        try {
+          // Initialize TrackPlayer
+          await TrackPlayer.setupPlayer();  // This is the correct method to initialize the player
+          console.log('Player setup complete!');
+          TrackPlayer.setRepeatMode(RepeatMode.Track); // Sets the Player to keep repeating the track and prevents it from popping it off the queue
+  
+          // Now the player is ready to be used
+          // You can add tracks or interact with other TrackPlayer methods here
+        } catch (error) {
+          console.log('Error setting up player:', error);
+        }
+      };
+  
+      setupPlayer(); // Call the function that sets up the player
+    }, []); // Only run on initial render (empty dependency array) except this doesnt work because Im not good enough to fully understand React Navigation, which keeps mounting and unmounting pages......this seems to only happen to use effects  on the PLayPage
+ 
+    
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={styles.container}>
-            <MainPageBanner></MainPageBanner>
+            <MainPageBanner title="Ola Sound" msg="Your Personal Music Journey" ></MainPageBanner>
           <View style={styles.SearchBar}>
-            <SearchBar  inputText={inputText} setInputText={setInputText}></SearchBar>
+            <SearchBar SearchIconPress={SearchIconPress}  inputText={inputText} setInputText={setInputText}></SearchBar>
           </View>
           <ScrollView>
                 <Text style={styles.topMixesTitle}>Your Top Mixes</Text>
@@ -41,8 +86,9 @@ import { useState } from "react";
               <Text style={styles.recommendedTitle}>Recommended for You</Text>
 
               <View style={styles.songlist}>
-              <Song song="Starlight Serenade" artist="Luna Nova" albumn="Cosmic Pop"  albumnCover="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?w=500&h=500"></Song>
+              <Song songid= {1234} preview="nopreview" song="Starlight Serenade" artist="Luna Nova" albumn="Cosmic Pop"  albumnCover="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?w=500&h=500"></Song>
               </View>
+              {/** */}
 
           </ScrollView>
         </View>
@@ -52,7 +98,7 @@ import { useState } from "react";
   
   const styles = StyleSheet.create({
     container: {
-      flex: 1, // Takes up full height of the screen
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
     },
     SearchBar: {
       alignItems:'center',

@@ -16,7 +16,7 @@ import {
 
 
 
-function ProfilePage() : React.JSX.Element {
+function ProfilePage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
 
@@ -29,6 +29,14 @@ function ProfilePage() : React.JSX.Element {
     )
 
 }
+const styles = StyleSheet.create({
+    container: {
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
+      borderWidth: 2,
+      borderColor: 'red',
+      
+    },
 
+})
 
 export default ProfilePage;

@@ -16,13 +16,13 @@ import {
 
 
 
-function LibraryPage () : React.JSX.Element {
+function LibraryPage ({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
 
 
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text>Library Page</Text>
         </View>
 
@@ -30,5 +30,12 @@ function LibraryPage () : React.JSX.Element {
 
 }
 
+const styles = StyleSheet.create({
+    container: {
+      height: 815.28, // Takes up full height of the screen - the bottomtabNavigator
+      
+    }
+
+})
 
 export default LibraryPage;
