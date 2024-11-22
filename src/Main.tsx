@@ -52,7 +52,7 @@ function Main() : React.JSX.Element {
             </AppNav.Navigator>
         </NavigationContainer>
 
-    )
+    );
 
 }
 
