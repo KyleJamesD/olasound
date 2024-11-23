@@ -6,6 +6,7 @@ import {
   Pressable,
   TextInput,
   Alert,
+  Image,
 } from 'react-native';
 
 function LoginPage({ navigation }: { navigation: any }): React.JSX.Element {
@@ -23,7 +24,13 @@ function LoginPage({ navigation }: { navigation: any }): React.JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Log In</Text>
+    <Image
+        source={require('../../assets/res/logo.png')} 
+        style={styles.logo}
+      />
+
+
+      <Text style={styles.title}>Welcome to Ola Sound!</Text>
 
       {/* Username Input */}
       <TextInput
@@ -59,6 +66,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
     backgroundColor: '#f0f4f8',
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    resizeMode: 'contain',
   },
   title: {
     fontSize: 28,

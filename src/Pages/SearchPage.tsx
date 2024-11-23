@@ -1,16 +1,8 @@
 import React from "react";
 import {
-    SafeAreaView,
       ScrollView,
-      StatusBar,
       StyleSheet,
-      Text,
-      useColorScheme,
       View,
-      PermissionsAndroid,
-      Linking,
-      Alert,
-      TouchableOpacity,
     } from 'react-native';
     import { useState } from "react";
     import { useEffect } from "react";
