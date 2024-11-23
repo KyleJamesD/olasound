@@ -1,22 +1,7 @@
 import React from "react";
-import {
-    SafeAreaView,
-      ScrollView,
-      StatusBar,
-      StyleSheet,
-      Text,
-      useColorScheme,
-      View,
-      PermissionsAndroid,
-      Linking,
-      Alert,
-      TouchableOpacity,
-    } from 'react-native';
-
-    import { Keyboard,TouchableWithoutFeedback } from 'react-native';
-
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 
@@ -24,7 +9,8 @@ import HomeNav from "./navigation/HomeStackNav";
 import LibraryNav from "./navigation/LibraryStackNav";
 import ProfileNav from "./navigation/ProfileStackNav";
 import SearchNav from "./navigation/SearchStackNav";
-import PlayPage from "./Pages/PlayPage";
+import TabIcon from "./components/junxian/TabIcon";
+import LoginPage from "./Pages/LoginPage";
 
 type AppNavType = {
     HomeNav : undefined,
@@ -35,26 +21,48 @@ type AppNavType = {
 
 
 const AppNav = createBottomTabNavigator<AppNavType>();
+const Stack = createNativeStackNavigator();
 
-
-function Main() : React.JSX.Element {
-
-
-    return (
-        <NavigationContainer>
-            <AppNav.Navigator screenOptions={{
-                headerShown: false,
-            }}>
-                <AppNav.Screen name="HomeNav" component={HomeNav}/>
-                <AppNav.Screen name="SearchNav" component={SearchNav}/>
-                <AppNav.Screen name="LibraryNav" component={LibraryNav}/>
-                <AppNav.Screen name="ProfileNav" component={ProfileNav}/>
-            </AppNav.Navigator>
-        </NavigationContainer>
-
-    )
-
+function MainApp() {
+  return (
+    <AppNav.Navigator
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarIcon: ({ focused, color, size }) => (
+          <TabIcon
+            route={route.name}
+            size={size}
+            color={color}
+            focused={focused}
+          />
+        ),
+        tabBarActiveTintColor: "#3a6d8c",
+        tabBarInactiveTintColor: "gray",
+      })}
+    >
+      <AppNav.Screen name="HomeNav" component={HomeNav} />
+      <AppNav.Screen name="SearchNav" component={SearchNav} />
+      <AppNav.Screen name="LibraryNav" component={LibraryNav} />
+      <AppNav.Screen name="ProfileNav" component={ProfileNav} />
+    </AppNav.Navigator>
+  );
 }
 
-
-export default Main;
+export default function Main() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LoginPage">
+        <Stack.Screen
+          name="LoginPage"
+          component={LoginPage}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="MainApp"
+          component={MainApp}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
