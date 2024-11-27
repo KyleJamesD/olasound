@@ -11,6 +11,13 @@ import ProfileNav from "./navigation/ProfileStackNav";
 import SearchNav from "./navigation/SearchStackNav";
 import TabIcon from "./components/junxian/TabIcon";
 import LoginPage from "./Pages/LoginPage";
+import { MusicProvider } from "./components/xuekun/MusicContext";
+import FloatingMusicButton from "./components/xuekun/FloatingMusicButton";
+import HomePage from "./Pages/HomePage";
+import SearchPage from "./Pages/SearchPage";
+import LibraryPage from "./Pages/LibraryPage";
+import ProfilePage from "./Pages/ProfilePage";
+import PlayPage from "./Pages/PlayPage";
 
 type AppNavType = {
     HomeNav : undefined,
@@ -25,6 +32,7 @@ const Stack = createNativeStackNavigator();
 
 function MainApp() {
   return (
+    <MusicProvider>
     <AppNav.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
@@ -40,11 +48,14 @@ function MainApp() {
         tabBarInactiveTintColor: "gray",
       })}
     >
-      <AppNav.Screen name="HomeNav" component={HomeNav} />
-      <AppNav.Screen name="SearchNav" component={SearchNav} />
-      <AppNav.Screen name="LibraryNav" component={LibraryNav} />
-      <AppNav.Screen name="ProfileNav" component={ProfileNav} />
+      <AppNav.Screen name="HomeNav" component={HomePage} />
+      <AppNav.Screen name="SearchNav" component={SearchPage} />
+      <AppNav.Screen name="LibraryNav" component={LibraryPage} />
+      <AppNav.Screen name="ProfileNav" component={ProfilePage} />
     </AppNav.Navigator>
+    <FloatingMusicButton/>
+
+    </MusicProvider>
   );
 }
 
@@ -61,6 +72,11 @@ export default function Main() {
           name="MainApp"
           component={MainApp}
           options={{ headerShown: false }}
+        />
+         <Stack.Screen
+          name="PlayPage"
+          component={PlayPage}
+          
         />
       </Stack.Navigator>
     </NavigationContainer>

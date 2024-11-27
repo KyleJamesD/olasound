@@ -12,7 +12,7 @@ import {
     import MainPageBanner from "../components/kyle/MainPageBanner";
     import SearchBar from "../components/kyle/SearchBar";
     import Song from "../components/kyle/Song";
-
+    import { useMusic } from "../components/xuekun/MusicContext";
 
 
 
@@ -23,6 +23,9 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
     const [inputTextNew, setInputTextNew] = useState("");
     const [data, setData] = useState<any>([]);
     console.log(inputTextNew)
+    const {setHasMusic, setCurrentMusic } = useMusic();
+
+
     
 
     // must use route.params and not inputText as the dependancy otherwise routing from homepage with the same search will not update
@@ -40,10 +43,10 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
       //*********************************Prop drilling Navigation************************************************/
     
       function navigateToPlayPage (songid:number, song:string, artist:string, albumn:string, albumnCover:string, preview:string) {
-        navigation.navigate('HomeNav', {
-          screen: 'PlayPage', // Specify the exact screen within SearchNav
-          params: { songid, song, artist, albumn, albumnCover, preview }, // Pass inputText as a parameter
-        });
+        setHasMusic(true);
+        setCurrentMusic({songid, song, artist, albumn, albumnCover, preview});
+        console.log("route: " + route.name);
+        navigation.navigate('PlayPage',{ songid, song, artist, albumn, albumnCover, preview });
       }
 
 

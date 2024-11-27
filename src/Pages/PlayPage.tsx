@@ -31,7 +31,6 @@ import { setupPlayer } from "react-native-track-player/lib/src/trackPlayer";
 function PlayPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
     const  {songid, song, artist, albumn, albumnCover, preview, } = route.params;
-
 //**For the track bar eventually */
     const progress = useProgress();
     let circleprogress = progress.position / 31 * 100; // since we know all our track are aprox 30seconds, in real app this would be set dynamically unfortunatel React native trackplayer has no means to give us the actual time and division by zero may occour if we were to use the buffered time.
