@@ -21,6 +21,8 @@ const MusicContext = createContext<{
   setHasMusic: React.Dispatch<React.SetStateAction<boolean>>;
   currentMusic: songdetails;
   setCurrentMusic: React.Dispatch<React.SetStateAction<any>>;
+  historyMusic: songdetails[];
+  setHistoryMusic: React.Dispatch<React.SetStateAction<songdetails[]>>;
 }>({
   hasMusic: false,
   setHasMusic: () => {},
@@ -32,7 +34,9 @@ const MusicContext = createContext<{
       albumnCover: '',
       preview: ''
   },
-  setCurrentMusic: () => {}
+  setCurrentMusic: () => {},
+  historyMusic: [],
+  setHistoryMusic: () => {}
 });
 
 import { ReactNode } from 'react';
@@ -47,9 +51,10 @@ export const MusicProvider = ({ children }: { children: ReactNode }) => {
     albumnCover: '',
     preview: ''
   });
+  const [historyMusic, setHistoryMusic] = useState<songdetails[]>([]);
 
   return (
-    <MusicContext.Provider value={{ hasMusic, setHasMusic, currentMusic, setCurrentMusic }}>
+    <MusicContext.Provider value={{ hasMusic, setHasMusic, currentMusic, setCurrentMusic, historyMusic, setHistoryMusic}}>
       {children}
     </MusicContext.Provider>
   );

@@ -1,31 +1,37 @@
 import React from 'react';
 import {FlatList, View, Text, Image, StyleSheet, Pressable} from 'react-native';
+import { useMusic } from './MusicContext';
+import { useNavigation } from '@react-navigation/native';
 
 interface Item {
-  id: number;
-  img: string;
-  title: string;
+  songid : number,
+  song : string;
+  artist : string;
+  albumn : string;
+  albumnCover : string;
+  preview : string,
 }
 
-interface HorizontalFlatListProps {
-  data: Item[];
-}
 
-const HorizontalFlatList: React.FC<HorizontalFlatListProps> = ({data}) => {
+
+const HorizontalFlatList: React.FC = () => {
+  const { historyMusic} = useMusic();
+  const navigation = useNavigation();
+
   const renderItem = ({item}: {item: Item}) => (
     <View style={styles.item}>
       <Pressable>
-        <Image source={{uri: item.img}} style={styles.image} />
-        <Text style={styles.text}>{item.title}</Text>
+        <Image source={{uri: item.albumnCover}} style={styles.image} />
+        <Text style={styles.text}>{item.song}</Text>
       </Pressable>
     </View>
   );
 
   return (
     <FlatList
-      data={data || []}
+      data={historyMusic || []}
       renderItem={renderItem}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={item => item.songid.toString()}
       ListEmptyComponent={<Text style={styles.emptyText}>暂无数据</Text>}
       horizontal
       showsHorizontalScrollIndicator={false}
