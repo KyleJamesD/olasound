@@ -8,8 +8,7 @@ const FloatingMusicButton = () => {
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
    // Animated values for position
-   const position = useRef(new Animated.ValueXY({ x: 10, y: screenHeight / 3 })).current; // Default position
-   const [isDragging, setIsDragging] = useState(false);
+   const position = useRef(new Animated.ValueXY({ x: screenWidth - 70, y: screenHeight -160 })).current; // Default position
 
   const navigation = useNavigation<any>();
   const route = useRoute();
