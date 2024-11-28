@@ -15,12 +15,14 @@ interface Item {
 
 
 const HorizontalFlatList: React.FC = () => {
-  const { historyMusic} = useMusic();
-  const navigation = useNavigation();
+  const { setCurrentMusic,historyMusic} = useMusic();
+  const navigation = useNavigation<any>();
 
   const renderItem = ({item}: {item: Item}) => (
     <View style={styles.item}>
-      <Pressable>
+      <Pressable onPress={ () => {
+        setCurrentMusic(item);
+        navigation.navigate('PlayPage', { ... item})}}>
         <Image source={{uri: item.albumnCover}} style={styles.image} />
         <Text style={styles.text}>{item.song}</Text>
       </Pressable>
