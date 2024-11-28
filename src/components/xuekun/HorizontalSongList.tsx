@@ -34,7 +34,7 @@ const HorizontalFlatList: React.FC = () => {
       data={historyMusic || []}
       renderItem={renderItem}
       keyExtractor={item => item.songid.toString()}
-      ListEmptyComponent={<Text style={styles.emptyText}>暂无数据</Text>}
+      ListEmptyComponent={<Text style={styles.emptyText}>No Data</Text>}
       horizontal
       showsHorizontalScrollIndicator={false}
     />
@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#888',
     textAlign: 'center',
+    alignSelf: 'center',
   },
 });
 
