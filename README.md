@@ -77,3 +77,65 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+
+
+
+
+# INSTALLATION STEPS FOR OLA SOUND 
+
+Have Metro and an Emulator Setup running Android version 14.0 or later
+instructions for Metro and setting up android sutdio can be found here:
+- https://reactnative.dev/docs/set-up-your-environment
+
+Use Git Clone into a new Empty folder to get the project Code. 
+Open a new CP in the Folder your cloned the github code, Run the command 'npm install' to install the neccessary Node packages.
+
+Again run a new CP window in the install folder and tpye in 'npm run' into the command line, After Metro has finished loading 
+press a to open an emulator, the App should load automatically. 
+
+
+# PACKAGES & LIBRARYS WE USED IN OLA SOUND
+The following libraries were USED:
+-React Navigation: https://reactnavigation.org/
+-Bottom Tabs Navigator: https://reactnavigation.org/docs/bottom-tab-navigator/
+-React Native Track Player: https://rntp.dev/
+
+
+# INSTALL REACT NATIVE Navigation and Stack Navigation 
+1. Run the Command: npm install @react-navigation/native
+2. Run the Command: npm install react-native-screens react-native-safe-area-context
+3. react-native-screens package requires one additional configuration step to properly work on Android devices. 
+Edit MainActivity.kt or MainActivity.java file which is located under android/app/src/main/java/<your package name>/.
+Add the code to the body of MainActivity class:
+
+class MainActivity: ReactActivity() {
+  // ...
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(null)
+  }
+  // ...
+}
+
+and make sure to add the following import statement at the top of this file below your package statement:
+
+import android.os.Bundle;
+
+
+4. Install React Nativ Stack Navigator, Run the command: npm install @react-navigation/native-stack
+5. Run the command:  npm install @react-navigation/elements
+
+# INSTALL REACT NATIVE Bottom Tabs Navigator
+
+1. Run the command: npm install @react-navigation/bottom-tabs
+
+# INSTALL REACT NATIVE Track Player
+1. Run the command: npm install --save react-native-track-player
+
+# DEEZER API 
+-https://developers.deezer.com/api
+
+
+
+
+
