@@ -24,6 +24,7 @@ import {
 
     import TrackPlayer , { useProgress } from 'react-native-track-player';
 import { setupPlayer } from "react-native-track-player/lib/src/trackPlayer";
+import { useMusic } from "../components/xuekun/MusicContext";
 
 
 
@@ -36,12 +37,16 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
     let circleprogress = progress.position / 31 * 100; // since we know all our track are aprox 30seconds, in real app this would be set dynamically unfortunatel React native trackplayer has no means to give us the actual time and division by zero may occour if we were to use the buffered time.
 
     const [playpause, setPlayPause] = useState(false);
+    const {setHasMusic, setCurrentMusic,historyMusic, setHistoryMusic } = useMusic();
 
       useEffect(() => {
         // Call the setup function
         console.log('setup has run and the new song should load')
         setup2();
         setPlayPause(false);
+
+        updateMusicHistory();
+
       }, [route.params]);
 
       
@@ -49,7 +54,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
       const setup2 = async () => {
       await TrackPlayer.reset();
         await TrackPlayer.add({
-          url:(preview),
+          url:preview,
           //artwork: require(albumnCover)
         });
 
@@ -57,6 +62,22 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
 
       
 
+
+  function updateMusicHistory() {
+    setHasMusic(true);
+    setCurrentMusic({ songid, song, artist, albumn, albumnCover, preview });
+    const index = historyMusic.findIndex((item) => item.songid === songid);
+    if (index > -1) {
+      historyMusic.splice(index, 1);
+    }
+
+    const nextHistory = [{ songid, song, artist, albumn, albumnCover, preview }, ...historyMusic];
+    if (nextHistory.length > 5) {
+      nextHistory.pop();
+    }
+    setHistoryMusic([...nextHistory]);
+    console.log("nextHistory: " + JSON.stringify(nextHistory));
+  }
 
     function playPauseButton () {
       if(!playpause){

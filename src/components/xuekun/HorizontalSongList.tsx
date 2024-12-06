@@ -24,7 +24,7 @@ const HorizontalFlatList: React.FC = () => {
         setCurrentMusic(item);
         navigation.navigate('PlayPage', { ... item})}}>
         <Image source={{uri: item.albumnCover}} style={styles.image} />
-        <Text style={styles.text}>{item.song}</Text>
+        <Text style={styles.text} numberOfLines={1}>{item.song}</Text>
       </Pressable>
     </View>
   );
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    width: 130,
-    height: 130,
+    width: 120,
+    height: 120,
     borderRadius: 10,
   },
   emptyText: {

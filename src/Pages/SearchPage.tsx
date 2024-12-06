@@ -43,21 +43,21 @@ function SearchPage({ navigation, route }: {navigation: any, route: any }) : Rea
       //*********************************Prop drilling Navigation************************************************/
     
       function navigateToPlayPage (songid:number, song:string, artist:string, albumn:string, albumnCover:string, preview:string) {
-        setHasMusic(true);
-        setCurrentMusic({songid, song, artist, albumn, albumnCover, preview});
-        const index = historyMusic.findIndex((item) => item.songid === songid);
-        if (index > -1) {
-          historyMusic.splice(index, 1);
-        }
+        // setHasMusic(true);
+        // setCurrentMusic({songid, song, artist, albumn, albumnCover, preview});
+        // const index = historyMusic.findIndex((item) => item.songid === songid);
+        // if (index > -1) {
+        //   historyMusic.splice(index, 1);
+        // }
 
-        const nextHistory = [{songid, song, artist, albumn, albumnCover, preview}, ...historyMusic];
-        if (nextHistory.length > 5) {
-          nextHistory.pop();
-        }
-        setHistoryMusic([...nextHistory]);
-        console.log("nextHistory: " + JSON.stringify(nextHistory));
-        console.log("nextHistory length: " + nextHistory.length);
-        console.log("route: " + route.name);
+        // const nextHistory = [{songid, song, artist, albumn, albumnCover, preview}, ...historyMusic];
+        // if (nextHistory.length > 5) {
+        //   nextHistory.pop();
+        // }
+        // setHistoryMusic([...nextHistory]);
+        // console.log("nextHistory: " + JSON.stringify(nextHistory));
+        // console.log("nextHistory length: " + nextHistory.length);
+        // console.log("route: " + route.name);
         navigation.navigate('PlayPage',{ songid, song, artist, albumn, albumnCover, preview });
       }
 

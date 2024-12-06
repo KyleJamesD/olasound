@@ -18,6 +18,7 @@ import SearchPage from "./Pages/SearchPage";
 import LibraryPage from "./Pages/LibraryPage";
 import ProfilePage from "./Pages/ProfilePage";
 import PlayPage from "./Pages/PlayPage";
+import PlayListDetailPage from "./Pages/PlayListDetailPage";
 
 type AppNavType = {
     HomeNav : undefined,
@@ -32,7 +33,7 @@ const Stack = createNativeStackNavigator();
 
 function MainApp() {
   return (
-    <MusicProvider>
+    <>
     <AppNav.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
@@ -54,14 +55,14 @@ function MainApp() {
       <AppNav.Screen name="ProfileNav" component={ProfilePage} />
     </AppNav.Navigator>
     <FloatingMusicButton/>
-
-    </MusicProvider>
+    </>
   );
 }
 
 export default function Main() {
   return (
     <NavigationContainer>
+      <MusicProvider>
       <Stack.Navigator initialRouteName="LoginPage">
         <Stack.Screen
           name="LoginPage"
@@ -73,12 +74,18 @@ export default function Main() {
           component={MainApp}
           options={{ headerShown: false }}
         />
-         <Stack.Screen
+        <Stack.Screen
           name="PlayPage"
           component={PlayPage}
           
         />
+        <Stack.Screen
+          name="PlayListDetailPage"
+          component={PlayListDetailPage}
+          options={{ title: '' }} 
+        />
       </Stack.Navigator>
+      </MusicProvider>
     </NavigationContainer>
   );
 }
