@@ -1,24 +1,20 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from "react";
 
 
 
-import HomeNav from "./navigation/HomeStackNav";
-import LibraryNav from "./navigation/LibraryStackNav";
-import ProfileNav from "./navigation/ProfileStackNav";
-import SearchNav from "./navigation/SearchStackNav";
 import TabIcon from "./components/junxian/TabIcon";
-import LoginPage from "./Pages/LoginPage";
-import { MusicProvider } from "./components/xuekun/MusicContext";
 import FloatingMusicButton from "./components/xuekun/FloatingMusicButton";
+import { MusicProvider } from "./components/xuekun/MusicContext";
 import HomePage from "./Pages/HomePage";
-import SearchPage from "./Pages/SearchPage";
 import LibraryPage from "./Pages/LibraryPage";
-import ProfilePage from "./Pages/ProfilePage";
-import PlayPage from "./Pages/PlayPage";
+import LoginPage from "./Pages/LoginPage";
 import PlayListDetailPage from "./Pages/PlayListDetailPage";
+import PlayPage from "./Pages/PlayPage";
+import ProfilePage from "./Pages/ProfilePage";
+import SearchPage from "./Pages/SearchPage";
 
 type AppNavType = {
     HomeNav : undefined,

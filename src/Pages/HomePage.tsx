@@ -39,10 +39,7 @@ import { useState } from "react";
     const SearchIconPress = () => {
       console.log('Home page inputtext:'+ inputText);
       // Navigate to 'SearchNav' stack navigator, specifically targeting 'SearchPage'
-      navigation.navigate('SearchNav', {
-        screen: 'SearchPage', // Specify the exact screen within SearchNav
-        params: { inputText }, // Pass inputText as a parameter
-      });
+      navigation.navigate('SearchNav', { inputText });
     };
 
 
