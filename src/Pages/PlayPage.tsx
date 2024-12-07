@@ -37,13 +37,16 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
     let circleprogress = progress.position / 31 * 100; // since we know all our track are aprox 30seconds, in real app this would be set dynamically unfortunatel React native trackplayer has no means to give us the actual time and division by zero may occour if we were to use the buffered time.
 
     const [playpause, setPlayPause] = useState(false);
-    const {setHasMusic, setCurrentMusic,historyMusic, setHistoryMusic } = useMusic();
+    const {setHasMusic, setCurrentMusic,historyMusic, setHistoryMusic, currentMusic } = useMusic();
 
       useEffect(() => {
         // Call the setup function
         console.log('setup has run and the new song should load')
+        if (songid !== currentMusic.songid) {
         setup2();
         setPlayPause(false);
+      }
+      setPlayPause(true);
 
         updateMusicHistory();
 
@@ -79,22 +82,22 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
     console.log("nextHistory: " + JSON.stringify(nextHistory));
   }
 
-    function playPauseButton () {
-      if(!playpause){
-        TrackPlayer.play();
-        setPlayPause(true);
-      }
-      else{
-        TrackPlayer.pause();
-        setPlayPause(false);
-      }
-            
+  function playPauseButton () {
+    if(!playpause){
+      TrackPlayer.play();
+      setPlayPause(true);
     }
+    else{
+      TrackPlayer.pause();
+      setPlayPause(false);
+    }
+          
+  }
 
 
-    function pausebutton () {
-            TrackPlayer.pause(); 
-    }
+  function pausebutton () {
+          TrackPlayer.pause(); 
+  }
     
 
 
