@@ -22,7 +22,7 @@ import {
 
     import MainPageBanner from "../components/kyle/MainPageBanner";
 
-    import TrackPlayer , { useProgress } from 'react-native-track-player';
+    import TrackPlayer , { useIsPlaying, useProgress } from 'react-native-track-player';
 import { setupPlayer } from "react-native-track-player/lib/src/trackPlayer";
 import { useMusic } from "../components/xuekun/MusicContext";
 
@@ -32,27 +32,24 @@ import { useMusic } from "../components/xuekun/MusicContext";
 function PlayPage({ navigation, route }: {navigation: any, route: any }) : React.JSX.Element {
 
     const  {songid, song, artist, albumn, albumnCover, preview, } = route.params;
-//**For the track bar eventually */
     const progress = useProgress();
     let circleprogress = progress.position / 31 * 100; // since we know all our track are aprox 30seconds, in real app this would be set dynamically unfortunatel React native trackplayer has no means to give us the actual time and division by zero may occour if we were to use the buffered time.
+    const { playing, bufferingDuringPlay } = useIsPlaying();
 
-    const [playpause, setPlayPause] = useState(false);
     const {setHasMusic, setCurrentMusic,historyMusic, setHistoryMusic, currentMusic } = useMusic();
+
 
       useEffect(() => {
         // Call the setup function
         console.log('setup has run and the new song should load')
         if (songid !== currentMusic.songid) {
         setup2();
-        setPlayPause(false);
       }
-      setPlayPause(true);
-
-        updateMusicHistory();
-
+    updateMusicHistory();
       }, [route.params]);
 
-      
+
+
 
       const setup2 = async () => {
       await TrackPlayer.reset();
@@ -83,24 +80,14 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
   }
 
   function playPauseButton () {
-    if(!playpause){
+    if(!playing){
       TrackPlayer.play();
-      setPlayPause(true);
     }
     else{
       TrackPlayer.pause();
-      setPlayPause(false);
     }
           
   }
-
-
-  function pausebutton () {
-          TrackPlayer.pause(); 
-  }
-    
-
-
 
     return (
         <View style={styles.container}>
@@ -110,7 +97,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
             <Text style={styles.artistTitle}>{artist}</Text>
             <Image style={styles.image} source={typeof albumnCover === 'string' ? { uri: albumnCover } : require('../../assets/icons/noimgfound.jpg')}></Image>
             
-            <Pressable onPress={playPauseButton}><Image  style={styles.playbutton} source={playpause === false ? require('../../assets/icons/play.png') : require('../../assets/icons/pause.png')}></Image></Pressable>
+            <Pressable onPress={playPauseButton}><Image  style={styles.playbutton} source={playing === false || playing == null ? require('../../assets/icons/play.png') : require('../../assets/icons/pause.png')}></Image></Pressable>
             </View>
 
 
