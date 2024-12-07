@@ -21,7 +21,7 @@ const HorizontalFlatList: React.FC = () => {
   const renderItem = ({item}: {item: Item}) => (
     <View style={styles.item}>
       <Pressable onPress={ () => {
-        setCurrentMusic(item);
+        //setCurrentMusic(item);
         navigation.navigate('PlayPage', { ... item})}}>
         <Image source={{uri: item.albumnCover}} style={styles.image} />
         <Text style={styles.text} numberOfLines={1}>{item.song}</Text>
