@@ -42,6 +42,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
       useEffect(() => {
         // Call the setup function
         console.log('setup has run and the new song should load')
+        console.log("songid=" + songid + " currentMusic.songid=" + currentMusic.songid)
         if (songid !== currentMusic.songid) {
         setup2();
       }
@@ -76,7 +77,7 @@ function PlayPage({ navigation, route }: {navigation: any, route: any }) : React
       nextHistory.pop();
     }
     setHistoryMusic([...nextHistory]);
-    console.log("nextHistory: " + JSON.stringify(nextHistory));
+    //console.log("nextHistory: " + JSON.stringify(nextHistory));
   }
 
   function playPauseButton () {
