@@ -1,16 +1,10 @@
 import React from "react";
 import {
-  SafeAreaView,
     ScrollView,
-    StatusBar,
     StyleSheet,
     Text,
-    useColorScheme,
-    View,
-    PermissionsAndroid,
-    Linking,
-    Alert,
     TouchableOpacity,
+    View,
   } from 'react-native';
 import { useEffect } from "react";
   import TrackPlayer from "react-native-track-player";
@@ -21,7 +15,6 @@ import { useState } from "react";
   import TopMixesButton from "../components/kyle/TopMixesButton";
   import Song from "../components/kyle/Song";
   import { RepeatMode } from 'react-native-track-player';
-
 
 
 
@@ -43,6 +36,7 @@ import { useState } from "react";
     };
 
 
+
 /***********************Set up react native Track Player********************** */
 
     useEffect(() => {
@@ -52,18 +46,16 @@ import { useState } from "react";
           await TrackPlayer.setupPlayer();  // This is the correct method to initialize the player
           console.log('Player setup complete!');
           TrackPlayer.setRepeatMode(RepeatMode.Track); // Sets the Player to keep repeating the track and prevents it from popping it off the queue
-  
+
           // Now the player is ready to be used
           // You can add tracks or interact with other TrackPlayer methods here
         } catch (error) {
           console.log('Error setting up player:', error);
         }
       };
-  
+
       setupPlayer(); // Call the function that sets up the player
     }, []); // Only run on initial render (empty dependency array) except this doesnt work because Im not good enough to fully understand React Navigation, which keeps mounting and unmounting pages......this seems to only happen to use effects  on the PLayPage
- 
-    
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -86,6 +78,20 @@ import { useState } from "react";
               <Song songid= {1234} preview="nopreview" song="Starlight Serenade" artist="Luna Nova" albumn="Cosmic Pop"  albumnCover="https://images.unsplash.com/photo-1559703248-dcaaec9fab78?w=500&h=500"></Song>
               </View>
               {/** */}
+
+              <View>
+
+              <Text style={styles.recommendedTitle}>About Our App</Text>
+              <View style={styles.description}>
+              <Text style={styles.descriptionText}> In 2024, three young individuals had a sudden inspiration to create a music app that would bring joy to people... </Text>
+              <TouchableOpacity
+              onPress={() => navigation.navigate("AboutPage")}
+              style={styles.headerButton}
+            >
+              <Text style={styles.readMoreText}>Read More </Text>
+            </TouchableOpacity>
+              </View>
+              </View>
 
           </ScrollView>
         </View>
@@ -124,15 +130,42 @@ import { useState } from "react";
       marginLeft: '3%',
       marginTop: '2%',
       color: '#000',
-      marginBottom: '2%'
+      marginBottom: '2%',
 
     },
     songlist: {
       alignItems: 'center',
     },
+    headerButton: {
+      fontSize: 17,
+      color: '#FFF',
+      marginRight: 10,
+    },
+    description: {
+      borderWidth: 1,
+      borderColor: "#dfe6e9",
+      borderRadius: 10,
+      padding: 15,
+      backgroundColor: "#ffffff",
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 2,
+      marginHorizontal: 20,
+      marginTop: 10,
+    },
+    descriptionText:{
+      fontSize: 16,
+      fontWeight: "400",
+      color: "#2d3436",
+      lineHeight: 26,
+      letterSpacing: 0.3,
+    },
+    readMoreText:{
+      textAlign:"right",
+    },
+    });
 
-
-  });
-  
 
 export default HomePage;

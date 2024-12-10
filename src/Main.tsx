@@ -15,6 +15,7 @@ import PlayListDetailPage from "./Pages/PlayListDetailPage";
 import PlayPage from "./Pages/PlayPage";
 import ProfilePage from "./Pages/ProfilePage";
 import SearchPage from "./Pages/SearchPage";
+import AboutPage from "./Pages/AboutPage";
 
 type AppNavType = {
     HomeNav : undefined,
@@ -73,12 +74,15 @@ export default function Main() {
         <Stack.Screen
           name="PlayPage"
           component={PlayPage}
-          
+        />
+        <Stack.Screen
+          name="AboutPage"
+          component={AboutPage}
         />
         <Stack.Screen
           name="PlayListDetailPage"
           component={PlayListDetailPage}
-          options={{ title: '' }} 
+          options={{ title: '' }}
         />
       </Stack.Navigator>
       </MusicProvider>

@@ -1,18 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
-  SafeAreaView,
-    ScrollView,
-    StatusBar,
     StyleSheet,
     Text,
-    useColorScheme,
     View,
-    PermissionsAndroid,
-    Linking,
-    Alert,
-    TouchableOpacity,
   } from 'react-native';
-  import LinearGradient from "react-native-linear-gradient";
+  import LinearGradient from 'react-native-linear-gradient';
 
 
   function MainPageBanner({ title , msg }: { title: string, msg?: string }) : React.JSX.Element {

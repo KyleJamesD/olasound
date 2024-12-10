@@ -1,7 +1,7 @@
-import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomePage from "../Pages/HomePage";
-import PlayPage from "../Pages/PlayPage";
+import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomePage from '../Pages/HomePage';
+import PlayPage from '../Pages/PlayPage';
 
 
 
@@ -15,6 +15,7 @@ type HomeStackParams = {
         albumnCover: string;
         preview: string;
       };
+    AboutPage:undefined,
 }
 
 const HomeStack = createNativeStackNavigator<HomeStackParams>();
