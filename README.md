@@ -84,6 +84,15 @@ To learn more about React Native, take a look at the following resources:
 
 # INSTALLATION STEPS FOR OLA SOUND 
 
+To use Ola sound just Git clone https://github.com/KyleJamesD/olasound.git into an empty folder 
+open a new CP window and run NPM install. Start your emulator and Run the app
+- Any username and password will work to log in.
+
+
+For further instructions on setting up metro and manually setting up the Libraries we used in a new project please read the instructions and links below:
+
+# METRO
+
 Have Metro and an Emulator Setup running Android version 14.0 or later
 instructions for Metro and setting up android sutdio can be found here:
 - https://reactnative.dev/docs/set-up-your-environment
